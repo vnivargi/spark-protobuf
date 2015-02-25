@@ -1,0 +1,11 @@
+package messages;
+
+// Explicitly specify the Java package name. See the Protocol Buffers
+// documentation for more information:
+// https://developers.google.com/protocol-buffers/docs/proto#options
+option java_package = "com.defend7.messages";
+
+message TestMessage {
+    required string name  = 1;
+    required int32  value = 2;
+}
