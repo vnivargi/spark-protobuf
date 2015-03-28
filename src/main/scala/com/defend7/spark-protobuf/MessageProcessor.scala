@@ -10,7 +10,7 @@ import scala.collection.JavaConversions._
 
 object MessageProcessor {
   private val sparkConf = new SparkConf().setAppName("MessageProcessor")
-    .set("spark.files.userClassPathFirst", "true")
+    //.set("spark.files.userClassPathFirst", "false")
   private val sc = new SparkContext(sparkConf)
 
   def main(args: Array[String]) = {
@@ -26,18 +26,18 @@ object MessageProcessor {
 
     // XXX: Printing from within the SparkContext throws class-not-found
     // exceptions, why?
-    // sc.makeRDD(protobufMessages).foreach((message: TestMessage) => {
-    //   printClassPath("worker")
-    //   println(message.toString)
-    // })
+     sc.makeRDD(protobufMessages).foreach((message: TestMessage) => {
+       printClassPath("worker")
+       println(message.toString)
+     })
 
     // XXX: This trivial RDD foreach loop throws a java.lang.ClassCastException
     // when I set "spark.files.userClassPathFirst" to true, why?
-    // val l = List(1, 2, 3)
-    // sc.makeRDD(l).foreach((x: Int) => {
-    //   printClassPath("worker")
-    //   println(x.toString)
-    // })
+     //val l = List(1, 2, 3)
+     //sc.makeRDD(l).foreach((x: Int) => {
+     //  printClassPath("worker")
+     //  println(x.toString)
+     //})
   }
 
   private def md5(s: String) = {

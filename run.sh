@@ -11,4 +11,5 @@ sbt assembly
 
 ${SPARK_BIN_PATH} \
     --class ${DRIVER_CLASS} \
+    --driver-class-path target/scala-2.10/${DRIVER_JAR} \
     target/scala-2.10/${DRIVER_JAR}
